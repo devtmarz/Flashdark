@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     CharacterController controller;
 
-    public float speed = 2f;
+    public float speed = 10f;
+    public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource footstepsAudioSource;
 
     public bool moving;
+    public bool canJump;
 
     public Transform groundCheck;
 
@@ -32,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     float z;
     void Update()
     {
-        print(gameObject.GetComponent<CharacterController>().velocity.magnitude);
         isGrounded = controller.isGrounded;
         if (isGrounded)
         {
@@ -66,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
             moveDirection.Normalize();
             moveDirection *= speed;
             moveDirection.y = -2f;
+            if (Input.GetKeyDown(KeyCode.Space) && canJump)
+            {
+                moveDirection.y = jumpSpeed;
+            }
         }
         else if (!isGrounded)
         {
