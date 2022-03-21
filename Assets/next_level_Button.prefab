@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2134851475251918631
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 110743648664484795, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_Name
+      value: button
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.027133465
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.683
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 775358481870266625, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032729783162148922, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032729783162148922, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1b1a8afaf165f4db5912e56c12cdcf75, type: 3}
+--- !u!1 &6374666093645229853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5032729783162148922, guid: 1b1a8afaf165f4db5912e56c12cdcf75,
+    type: 3}
+  m_PrefabInstance: {fileID: 2134851475251918631}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &384332497
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374666093645229853}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.99999994
+  m_Height: 4.16227
+  m_Direction: 1
+  m_Center: {x: -0.000000014901161, y: -1.54, z: -0.0000038146973}
+--- !u!114 &384332496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374666093645229853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc18600a16a964f5881a5eaf1d26a0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactText: '[E] Go to next floor'
+  interactEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: WorldState, Assembly-CSharp
+        m_MethodName: LevelWin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

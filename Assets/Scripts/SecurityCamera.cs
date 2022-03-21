@@ -4,17 +4,31 @@ using UnityEngine;
 
 public class SecurityCamera : MonoBehaviour
 {
-    public Transform pivot;
-    Transform player;
-    // Start is called before the first frame update
+    public float detectionRange = 20f;
+    public bool playerDetected = false;
+    Transform playerTransform;
+    WorldState worldState;
+
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        worldState = FindObjectOfType<WorldState>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        pivot.LookAt(player);
+        RaycastHit hit;
+        Vector3 targetDirection = playerTransform.position - transform.position;
+        Physics.Raycast(transform.position, targetDirection, out hit, detectionRange);
+        if (!worldState.worldIsDark && hit.transform == playerTransform)
+        {
+            playerDetected = true;
+            Debug.DrawRay(transform.position, targetDirection * hit.distance, Color.yellow);
+        }
+        else
+        {
+            playerDetected = false;
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+        }
     }
 }

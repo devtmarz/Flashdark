@@ -8,7 +8,16 @@ public class Flashdark : MonoBehaviour
 
     WorldState worldState;
     bool _canUse;
+    public float rechargeSeconds = 5f;
 
+    public AudioSource flashdarkAudioSource;
+    
+    public AudioClip readyToUseSound;
+    public AudioClip denyInputSound;
+    public AudioClip depletedSound;
+
+    public Material flashdarkLights;
+    Color readyToUseColor = new Color(0.05490196f, 1.403922f, 0f);
     private void Start()
     {
         worldState = FindObjectOfType<WorldState>();
@@ -17,67 +26,56 @@ public class Flashdark : MonoBehaviour
     private void OnEnable()
     {
         _canUse = true;
+        flashdarkLights.SetColor("_EmissionColor", readyToUseColor);
     }
 
     private void OnDisable()
     {
         StopAllCoroutines();
-        worldState.SetWorldDark(false);
+        if (worldState != null)
+            worldState.SetWorldDark(false);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _canUse)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            StartCoroutine("UsingFlashdark");
+            if (_canUse)
+            {
+                StartCoroutine("UsingFlashdark");
+            }
+            else
+            {
+                PlaySoundClip(denyInputSound);
+            }
         }
     }
     IEnumerator UsingFlashdark()
     {
         _canUse = false;
         worldState.SetWorldDark(true);
-        while (!Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            yield return null;
-        }
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSecondsRealtime(2f);
+        PlaySoundClip(depletedSound);
+        yield return new WaitForSecondsRealtime(0.7f);
+        flashdarkLights.SetColor("_EmissionColor", Color.red);
         worldState.SetWorldDark(false);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSecondsRealtime(rechargeSeconds);
+        flashdarkLights.SetColor("_EmissionColor", readyToUseColor);
+        PlaySoundClip(readyToUseSound);
         _canUse = true;
     }
-}
 
-/*
-// Charge System
-
-public float maxCharge;
-[SerializeField] float currentCharge;
-
-private void OnEnable()
-{
-    currentCharge = maxCharge;
-}
-
-IEnumerator UsingFlashdark()
-{
-    if (currentCharge < 1)
-        yield break;
-    worldState.SetWorldDark(true);
-    while (currentCharge > 0 && !Input.GetKeyUp(KeyCode.Mouse0))
+    void PlaySoundClip(AudioClip audioClip)
     {
-        currentCharge -= 1 * Time.deltaTime;
-        currentCharge = Mathf.Clamp(currentCharge, 0, maxCharge);
-        yield return null;
-    }
-    worldState.SetWorldDark(false);
-    yield return new WaitForSeconds(2);
-    while (currentCharge < maxCharge && !Input.GetKeyDown(KeyCode.Mouse0))
-    {
-        currentCharge += 1 * Time.deltaTime;
-        currentCharge = Mathf.Clamp(currentCharge, 0, maxCharge);
-        yield return null;
+        if (flashdarkAudioSource.isPlaying)
+        {
+            if (audioClip == denyInputSound)
+            {
+                return;
+            }
+            flashdarkAudioSource.Stop();
+        }
+        flashdarkAudioSource.clip = audioClip;
+        flashdarkAudioSource.Play();
     }
 }
-*/
-
-
